@@ -10,18 +10,6 @@ const nameAndModels = [
     name: 'Acura',
     models: [
       {
-        id: 18,
-        name: 'TL',
-        yearFrom: 1996,
-        yearTo: 2014,
-      },
-      {
-        id: 19,
-        name: 'TLX',
-        yearFrom: 2015,
-        yearTo: 2023,
-      },
-      {
         id: 20,
         name: 'TSX',
         yearFrom: 2004,
@@ -57,7 +45,7 @@ async function getUrlsEachLot() {
     console.log(brandName);
 
     for (let j = 0; j < modelsbrand.length; j++) {
-      page = 37;
+      page = 1;
       const model = modelsbrand[j];
       const modelName = model.name;
       const yearFrom = model.yearFrom;
@@ -67,7 +55,7 @@ async function getUrlsEachLot() {
 
       try {
         const response = await fetch(url + page);
-        await delay(8000);
+        await delay(10000);
         if (!response.ok) {
           ERROR.push(url + page);
           throw new Error('Network response was not ok');
@@ -85,11 +73,11 @@ async function getUrlsEachLot() {
         console.log('page->', page, 'from', totalPages);
         RESULT.push(...urlsOfLots);
 
-        for (let page = 38; page <= totalPages; page++) {
+        for (let page = 2; page <= totalPages; page++) {
           const urlNext = url + page;
           try {
             const response = await fetch(urlNext);
-            await delay(8000);
+            await delay(10000);
             if (!response.ok) {
               ERROR.push(url + page);
               throw new Error('Network response was not ok');
